@@ -7,6 +7,9 @@ const PORT = 3000;
 // create a new express app
 const app = express();
 
+// tell express to use public as static folder
+app.use(express.static("public"));
+
 const renderHome = (req, res) => {
   const filePath = path.join(__dirname, "../", "public/index.html");
   res.sendFile(filePath);
@@ -19,7 +22,7 @@ const renderNotes = (req, res) => {
 
 // registering a get path for /
 app.get("/", renderHome);
-app.get("/api", renderNotes);
+app.get("/notes", renderNotes);
 
 // connect express app to correct port
 app.listen(PORT, () => console.log(`Navigate to http://localhost:${PORT}`));
