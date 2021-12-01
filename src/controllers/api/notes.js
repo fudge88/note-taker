@@ -26,12 +26,13 @@ const getNoteById = (req, res) => {
 // add note
 const addNote = (req, res) => {
   const payload = req.body;
-
   const validKeys = ["id", "title", "text"];
 
+  // validation
   const isValid = validKeys.every((key) => {
     return Object.keys(payload).includes(key);
   });
+
   if (isValid) {
     const newNote = {
       id: uuidv4(),
@@ -46,6 +47,7 @@ const addNote = (req, res) => {
 
     return res.json(newNote);
   }
+
   return res
     .status(400)
     .json({ message: "Please enter valid values to requested keys" });
@@ -53,7 +55,24 @@ const addNote = (req, res) => {
 
 // delete note
 const deleteNote = (req, res) => {
-  res.send("deleteNote");
+  const { id } = req.params;
+
+  const notes = getNotesFromFile();
+
+  const note = notes.find((note) => note.id === id);
+
+  if (!note) {
+    return res.status(404).json({
+      message: `INVALID SEARCH - Note ID:${id} was not found`,
+    });
+  }
+  const newNote = notes.filter((note) => {
+    return note.id !== id;
+  });
+
+  writeNotesToFile(JSON.stringify(newNote));
+
+  return res.json(newNote);
 };
 
 module.exports = {
