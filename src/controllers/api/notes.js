@@ -1,22 +1,13 @@
-const fs = require("fs");
-const path = require("path");
+const { v4: uuidv4 } = require("uuid");
+const { getNotesFromFile, writeNotesToFile } = require("../../util.js");
 
-const getNotesFromFile = () => {
-  const notesJSON = fs.readFileSync(
-    path.join(__dirname, "../../db/db.json"),
-    "utf-8"
-  );
-
-  const notes = JSON.parse(notesJSON);
-
-  return notes;
-};
-
+// get all notes
 const getNotes = (req, res) => {
   const notes = getNotesFromFile();
   res.json(notes);
 };
 
+// get specific note
 const getNoteById = (req, res) => {
   const { id } = req.params;
   const notes = getNotesFromFile();
@@ -26,13 +17,41 @@ const getNoteById = (req, res) => {
   if (note) {
     return res.json(note);
   }
+  // return status 404 with message
   return res.status(404).json({
     message: `INVALID SEARCH - Note ID:${id} was not found`,
   });
 };
+
+// add note
 const addNote = (req, res) => {
-  res.send("addNote");
+  const payload = req.body;
+
+  const validKeys = ["id", "title", "text"];
+
+  const isValid = validKeys.every((key) => {
+    return Object.keys(payload).includes(key);
+  });
+  if (isValid) {
+    const newNote = {
+      id: uuidv4(),
+      ...payload,
+    };
+
+    const notes = getNotesFromFile();
+
+    notes.push(newNote);
+
+    writeNotesToFile(JSON.stringify(notes));
+
+    return res.json(newNote);
+  }
+  return res
+    .status(400)
+    .json({ message: "Please enter valid values to requested keys" });
 };
+
+// delete note
 const deleteNote = (req, res) => {
   res.send("deleteNote");
 };
