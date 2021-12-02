@@ -1,5 +1,8 @@
+const path = require("path");
+
 const renderHome = (req, res) => {
-  res.send("renders home page");
+  const filePath = path.join(__dirname, "../../../public/index.html");
+  res.sendFile(filePath);
 };
 
 const renderNotes = (req, res) => {
