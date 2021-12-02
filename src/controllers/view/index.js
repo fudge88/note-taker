@@ -6,7 +6,8 @@ const renderHome = (req, res) => {
 };
 
 const renderNotes = (req, res) => {
-  res.send("renders notes");
+  const filePath = path.join(__dirname, "../../../public/notes.html");
+  res.sendFile(filePath);
 };
 
 module.exports = { renderHome, renderNotes };

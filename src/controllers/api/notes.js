@@ -26,7 +26,7 @@ const getNoteById = (req, res) => {
 // add note
 const addNote = (req, res) => {
   const payload = req.body;
-  const validKeys = ["id", "title", "text"];
+  const validKeys = ["title", "text"];
 
   // validation
   const isValid = validKeys.every((key) => {
