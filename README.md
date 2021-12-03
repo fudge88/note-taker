@@ -1,6 +1,6 @@
 # Note Taker ![MIT](https://img.shields.io/static/v1?label=MIT&message=License&color=<COLOR>)
 
-#### You can view the deployed app by [clicking here!](https://)
+#### You can view the deployed app by [clicking here!](https://limitless-mesa-85289.herokuapp.com/)
 
 Note Taker allows the user to write and save notes. This application uses an Express.js back end, it saves and retrieves note data from a JSON file.
 
