@@ -4,7 +4,13 @@ const { getNotesFromFile, writeNotesToFile } = require("../../util.js");
 // get all notes
 const getNotes = (req, res) => {
   const notes = getNotesFromFile();
-  res.json(notes);
+  console.log(notes);
+  if (notes.length) {
+    return res.json(notes);
+  }
+  return res.status(404).json({
+    message: `No notes found`,
+  });
 };
 
 // get specific note
