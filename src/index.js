@@ -13,4 +13,4 @@ app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 
 // connect express app to correct port
-app.listen(PORT, () => console.log(`Navigate to http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Navigate to https://localhost:${PORT}`));
