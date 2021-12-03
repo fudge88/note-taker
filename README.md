@@ -1,10 +1,10 @@
 # Note Taker ![MIT](https://img.shields.io/static/v1?label=MIT&message=License&color=<COLOR>)
 
+#### You can view the deployed app by [clicking here!](https://)
+
 Note Taker allows the user to write and save notes. This application uses an Express.js back end, it saves and retrieves note data from a JSON file.
 
-![portfolio demo](./dist/assets/demo.gif)
-
-![portfolio demo](./dist/assets/questions.gif)
+![portfolio demo](./public/assets/img/demo.gif)
 
 ## User Story
 
@@ -45,6 +45,12 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 - HTML
 - CSS
 
+#### The File Structure:
+
+Express applications, require a well set out file structure, as make the code readable and understandable for the other people, it is important to structure the project in a way that anyone can understand what each file does. This also sets out the entry point for the application and then draws out a path depending on the users needs.
+
+![portfolio demo](./public/assets/img/filestructure.png)
+
 #### Express.js
 
 Express is a minimal and flexible Node.js web application framework that provides a robust set of features, providing a thin layer of fundamental web application features, without obscuring Node.js features.
@@ -63,20 +69,20 @@ A route method is derived from one of the HTTP methods, and is attached to an in
 
 The following code is an example from this app of routes that are defined for the GET, POST AND DELETE methods to the root of the app.
 
-GET method:
+##### GET method:
 
 ```
 router.get("/", getNotes);
 router.get("/:id", getNoteById);
 ```
 
-POST method:
+##### POST method:
 
 ```
 router.post("/", addNote);
 ```
 
-DELETE method:
+##### DELETE method:
 
 ```
 router.delete("/:id", deleteNote);
@@ -90,9 +96,11 @@ return res.json(note);
 
 #### Database
 
-A JSON document database is a type of nonrelational database that is designed to store and query data as JSON documents, rather than normalizing data across multiple tables, each with a unique and fixed structure, as in a relational database.
+JSON was used as a database in this app. JSON document database is a type of nonrelational database that is designed to store and query data as JSON documents, rather than normalizing data across multiple tables, each with a unique and fixed structure, as in a relational database.
 
-#### How it works
+![add note](./public/assets/img/addnote.png)
+
+#### How it all works
 
 The below is a set of sample code, illustrating the endpoints, and the responses `to` and `from` JSON.
 
